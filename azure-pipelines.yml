@@ -9,7 +9,7 @@ trigger:
 variables:
   resourceGroup: 'microservices'
   containerName: 'hello-world-pipeline-18'
-  imageName: 'devs4j/hello-world-pipeline-0'
+  imageName: 'devs4j/hello-world-pipeline-18'
   dnsName: 'hello-world-pipeline-0-123418'
 
 
@@ -48,3 +48,13 @@ steps:
   inputs:
     command: login
     containerRegistry: DockerHubService
+    
+- task: Docker@2
+  displayName: Build and Push
+  inputs:
+    command: buildAndPush
+    repository: $(imageName)
+    tags: |
+      $(version)
+
+    
